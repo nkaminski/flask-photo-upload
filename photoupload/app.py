@@ -8,7 +8,7 @@ import config as cf
 
 #Global Setup
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = cf.db_uri
 db = SQLAlchemy(app)
 
 #DB Object declarations
@@ -26,7 +26,8 @@ class Image(db.Model):
     upload = db.relationship('Upload', backref=db.backref('images', lazy=True))
     filename = db.Column(db.String(1024), nullable=False)
 
-db.create_all()
+if cf.init_db:
+    db.create_all()
 
 def is_safe_path(basedir, path, follow_symlinks=True):
   # resolves symbolic links

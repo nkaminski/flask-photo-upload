@@ -1,0 +1,4 @@
+upload_dir = "photoupload/static/uploads"
+db_uri = 'mysql://user:pass@localhost/photoupload'
+#WARNING: Reinitializes the database on startup! for first launch only!
+init_db = False
