@@ -2,6 +2,10 @@ body {
     padding-top: 5rem;
 }
 
+ul {
+    list-style: none;
+}
+
 #dropbox {
     border: 0.2em dashed #000000;
     padding: 2em;

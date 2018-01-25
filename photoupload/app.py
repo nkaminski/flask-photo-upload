@@ -39,6 +39,10 @@ def is_safe_path(basedir, path, follow_symlinks=True):
 def index():
     return render_template("index.html")
 
+@app.route("/listing")
+def listing():
+    l = Upload.query.order_by(Upload.name).all()
+    return render_template("listing.html",upload_list=l)
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -102,6 +106,30 @@ def upload_complete(uuid):
 
     # Get files, making sure the path is safe!
     root = "{}/{}".format(cf.upload_dir,uuid)
+
+    if not is_safe_path(cf.upload_dir, root):
+        return "Error: Path is invalid!"
+
+    if not os.path.isdir(root):
+        return "Error: UUID not found!"
+
+    files = []
+    for file in glob.glob("{}/*.*".format(root)):
+        fname = file.split(os.sep)[-1]
+        files.append(fname)
+
+    return render_template("files.html",
+        uuid=uuid,
+        files=files,
+        is_upload=True
+    )
+
+@app.route("/view/<uuid>")
+def view_photos(uuid):
+    """The location we send them to at the end of the upload."""
+
+    # Get files, making sure the path is safe!
+    root = "{}/{}".format(cf.upload_dir,uuid)
     
     if not is_safe_path(cf.upload_dir, root):
         return "Error: Path is invalid!"
@@ -117,8 +145,8 @@ def upload_complete(uuid):
     return render_template("files.html",
         uuid=uuid,
         files=files,
+        is_upload=False
     )
-
 
 def ajax_response(status, msg):
     status_code = "ok" if status else "error"

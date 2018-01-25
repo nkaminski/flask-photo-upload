@@ -23,10 +23,12 @@
 
         <div class="container-fluid main-content">
             <div class="row">
+		{% if is_upload %}
                 <div class="col-12">
                     <h2>Upload Successful</h2>
                     <p class="lead">Thank You (in English and Polish?)</p>
                 </div>
+		{% endif %}
             </div>
                 {% for file in files %}
                 {% if loop.index0 % 3 == 0 %}
@@ -44,7 +46,9 @@
                 {% endfor %}
                 <div class="row">
                     <div class="col-12"> 
-                        <a href="{{ url_for('index') }}">Upload Additional Photos</a><p>
+			{% if is_upload %}
+			<a href="{{ url_for('index') }}">Upload Additional Photos</a><p>
+			{% endif %}
                         <hr>
                         <footer>
                             <p>Website by <a href="https://kaminski.io"/>Nash Kaminski</p>

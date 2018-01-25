@@ -24,22 +24,27 @@
         <div class="container">
 
             <div class="main-content">
-                <h1>Thank you...</h1>
-                <p class="lead">Instructions in English and Polish</p>
-                <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                <h1>Sylwia & Adrian Birylo</h1>
+		<h2>09.30.2017</h2>
+		<hr>
+		<a href="{{ url_for('listing') }}" class="lead">Galeria Zdjęć/Photo Gallery</a>
+		<hr>
+		<p class="lead">Jesteśmy bardzo wdzięczni, że mamy wspaniałą rodzinę i przyjaciół, którzy pomogli nam świętować nasz dzień ślubu. W galerii znajdziesz zdjęcia zrobione przez naszego fotografa, a także zdjęcia innych gości. Dodaj też własne zdjęcia poniżej (maksymalnie ~ 100 / 50MB na raz). Dziękujemy za udział i wszystkie życzenia, Sylwia i Adrian</p>
+		<br><br><p class="lead">We are very grateful to have such wonderful family and friends that helped us celebrate our wedding day. In the gallary you'll find the pictures taken by our photographer as well as pictures from other guests. Please also upload your own pictures below (maximum ~100/50MB at once). Thank you for attending and all the wishes, Sylwia & Adrian</p>
+		<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="name-form">Name</label>
+                        <label for="name-form">Imię/Name</label>
                         <input name="name" class="form-control" id="name-form" placeholder="Your Name">
                     </div>
                     <div class="form-group">
-                        <label for="file-picker">Select photos to upload</label>
+                        <label for="file-picker">Wybierz zdjęcia/Select photos to upload</label>
                         <input class="form-control-file" id="file-picker" type="file" name="file" accept="image/*" multiple>
                         <div id="dropbox">
                             Drag Photos Here
                         </div>
                     </div> 
                     <div class="form-group">
-                        <label for="desc-form">Description and comments</label>
+                        <label for="desc-form">Opis i komentarz/Description and comments</label>
                         <textarea name="desc" class="form-control" id="desc-form" rows="3"></textarea>
                     </div> 
                     <div class="form-group progress">
